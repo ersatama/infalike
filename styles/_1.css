@@ -1,0 +1,100 @@
+._a {
+	width: 500px;
+    background: white;
+    border: 1px solid rgb(227, 228, 231);
+    border-radius: 5px;
+    margin: 150px auto 150px auto;
+	overflow: hidden;
+}
+._b {
+    color: grey;
+    font-size: 12px;
+    padding: 10px 15px 13px 15px;
+    line-height: 1.8;
+}
+._c {
+    font-size: 18px;
+    color: rgb(76,96,113);
+    padding: 5px 0 0 0;
+    text-align: center;
+}
+._d {
+    font-size: 11px;
+    color: grey;
+    padding: 15px;
+    border-top: 1px solid gainsboro;
+}
+._e {
+	cursor: pointer;
+	color: #8899a6;
+}
+._e:hover {
+	text-decoration: underline;
+}
+._f {
+    background: url(/sources/lc.png) no-repeat;
+    width: 60px;
+    height: 60px;
+    margin: 10px auto 0 auto;
+}
+._g {
+    border: 1px solid rgb(227, 228, 231);
+    width: 700px;
+    min-height: 350px;
+    background: white;
+    margin: 120px auto 50px auto;
+    border-radius: 5px;
+}
+._h {
+    font-size: 14px;
+    color: rgb(76,96,113);
+    padding: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: justify;
+}
+._i {
+overflow: hidden;
+    margin: 5px auto 10px auto;
+    width: 430px;
+}
+._j {
+    width: 130px;
+    height: 130px;
+    float: left;
+    margin: 0 20px 0 0;
+}
+._j:last-child {
+	margin: 0;
+}
+._k {
+    overflow: hidden;
+    padding: 1px;
+    margin: 0 auto 35px auto;
+    width: 430px;
+}
+._l {
+    padding: 10px 0 10px 0;
+    font-size: 11px;
+    background: rgb(245,250,255);
+    box-shadow: 0 0 0 1px rgb(230,235,240);
+    float: left;
+    width: 130px;
+    text-align: center;
+    margin: 0 20px 0 0;
+	cursor: pointer;
+	text-decoration: none;
+    color: rgb(86,106,123);
+}
+._l:last-child {
+	margin: 0;
+}
+.Chrome {
+    background: url(/sources/browsers.png) -36px -61px;
+}
+.Opera {
+    background: url(/sources/browsers.png) -333px -61px;
+}
+.Mozilla {
+    background: url(/sources/browsers.png) -184px -61px;
+}

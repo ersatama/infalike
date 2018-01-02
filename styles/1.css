@@ -1,0 +1,70 @@
+.__7e,.__7k, .__7l, .__7k:before, .__7k:after, .__7l:before, .__7l:after {
+    background: rgb(11, 94, 128);
+}
+.__3v {
+    background: rgb(36, 120, 154);
+}
+.__3y1 {
+    background: rgb(36, 120, 154);
+}
+.__3e:before, .__3e:after {
+	background: rgb(51, 134, 168) !important;
+}
+.__b {
+    background: linear-gradient(to top, rgb(51, 134, 168), rgb(41, 124, 158));
+    border-bottom: 1px solid rgb(36, 120, 154);
+    box-shadow: 0 0 1.5px 1px rgba(0, 34, 68,.6);
+}
+.__d:hover {
+    box-shadow: 0 0 0 3px rgb(21, 104, 138);
+    background-color: rgb(21, 104, 138);
+}
+.search,.__8h:before, .__8h:after {
+    background: rgb(0, 84, 118);
+}
+.__8h {
+	border: 2px solid rgb(0, 84, 118);
+}
+.s-i:before {
+	border: 2px solid rgb(61, 144, 178);
+}
+.s-i:after {
+	background: rgb(61, 144, 178);
+}
+.__3c {
+    background: rgb(11, 94, 128);
+}
+.__3c:hover {
+    background: rgb(1, 84, 118);
+}
+.__h:hover,.__3f:hover {
+	background-color: rgb(26, 109, 143);
+}
+.__3b {
+	background-position: -35px -16px;
+}
+.__f {
+	background-position: 0 -16px;
+}
+.__3a {
+	background-position: -18px -16px;
+}
+.__4e,._m1  {
+	color: rgb(36, 119, 153);
+}
+.__5t {
+	box-shadow: 0 0 0 2px rgb(36, 119, 153);
+}
+.__4o {
+    background: linear-gradient(to bottom, rgb(51, 134, 168), rgb(31, 114, 148));
+    border: 1px solid rgb(21, 104, 138);
+}
+.__4o:hover {
+    background: linear-gradient(to bottom, rgb(41, 124, 158), rgb(21, 104, 138));
+}
+.__4o:active {
+    background: linear-gradient(to top, rgb(41, 124, 158), rgb(21, 104, 138));
+}
+.__4w::-webkit-scrollbar-thumb        {
+	background:  rgb(51, 134, 168);
+}

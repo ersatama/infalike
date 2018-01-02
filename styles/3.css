@@ -1,0 +1,39 @@
+.__3e:before, .__3e:after {
+	background: rgb(200, 54, 80) !important;
+}
+.__b {
+    background: linear-gradient(to top, rgb(200, 54, 80), rgb(190, 44, 70));
+    border-bottom: 1px solid rgb(190, 44, 70);
+    box-shadow: 0 0 1.5px 1px rgba(110, 0, 0,.6);
+}
+.__d:hover {
+    box-shadow: 0 0 0 3px rgb(185, 39, 65);
+    background-color: rgb(185, 39, 65);
+}
+.search {
+    background: rgb(140, 0, 20);
+}
+.s-i:before {
+	border: 2px solid white;
+}
+.s-i:after {
+	background: white;
+}
+.__3c {
+    background: rgb(150, 10, 30);
+}
+.__3c:hover {
+    background: rgb(140, 0, 20);
+}
+.__h:hover,.__3f:hover {
+	background-color: rgb(170, 24, 50);
+}
+.__3b {
+	background-position: -35px -48px;
+}
+.__f {
+	background-position: 0 -48px;
+}
+.__3a {
+	background-position: -18px -48px;
+}

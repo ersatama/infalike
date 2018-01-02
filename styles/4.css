@@ -1,0 +1,18 @@
+.__b {
+    background: linear-gradient(to top,rgb(24, 92, 24), rgb(10, 78, 10));
+    border-bottom: 1px solid rgb(0, 68, 0);
+    box-shadow: 0 0 1.5px 1px rgba(0, 68, 0,.8);
+}
+.__d:hover {
+    box-shadow: 0 0 0 3px rgb(0, 68, 0);
+    background-color: rgb(0, 68, 0);
+}
+.search {
+    background: rgb(0, 40, 0);
+}
+.s-i:before {
+	border: 2px solid rgb(220, 74, 100);
+}
+.s-i:after {
+	background: rgb(220, 74, 100);
+}
