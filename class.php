@@ -1343,6 +1343,7 @@ $GLOBALS['DB']->q("REPLACE `".$GLOBALS['info'][2][55][0]."` VALUES(".$_SESSION['
 function chA($a) {
 alertBox::setAuS($a);
 exit(alertBox::auM($_SESSION['id']));
+//
 }
 function auMB($a,$z) {
 $b = [''];
