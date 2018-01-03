@@ -379,6 +379,24 @@ var go = {
 		}
 	},
 	audio: {
+		change: function(a,b) {
+			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
+			c = [a.parentNode.dataset.id,a.dataset.id];
+			if (c[0]==c[1]) return; else if (a.dataset.id==0) {
+				$("div .__27s").removeClass("__27r0");
+				$(a.parentNode).attr("data-id",0).children().eq(0).addClass("__27r0");
+				c[2] = 0;
+			} else {
+				$("div .__27s").removeClass("__27r0");
+				$(a.parentNode).attr("data-id",1).children().eq(1).addClass("__27r0");
+				c[2] = 1;
+			}
+			http.start({'s':128,'v':c[2]}).onreadystatechange = function() {
+				if (!http.st(this)) return; else $(".__13k").html(this.responseText);
+				sortable();
+				go.audio.join();
+			}
+		},
 		plList: function(a,b) {
 			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
 			if (b.dataset.id==0) {
@@ -985,22 +1003,45 @@ $info[2][50] = ['_audio_playlist_list','id','plst','au','ss','ct'];//audio playl
 			if (!dom.id("m-up")) return; else if ($("#m-up").attr("data-s")==1) return; else $("#m-up").attr("data-s",1);
 			$(".__27q").find(".__27q1").fadeOut(0).end().find(".__27q0").fadeIn(0);
 			b = [[JSON.parse($("#m-up").attr("data-id")),$("#m-up").children().length],[]];
-			alert(JSON.stringify(b[0]));
-			if (b[0].t==0) b[1] = [b[0],]; else {
-				b[1] = 
+			if (b[0][0].t==0) b[1] = b[0]; else {
+				b[3] = [1];
+				for (b[2]=0;b[2]<b[0][1];b[2]++) {
+					if ($("#m-up").children().eq(b[2]).attr("data-s")==0) {
+						b[3] = [0,[$("#m-up").children().eq(b[2]).attr("data-id"),$("#m-up").children().eq(b[2]).find(".__27u").children().length]];
+						break;
+					}
+				}
+				if (b[3][0]==1) return; else b[1] = [b[0][0],b[3][1]];
 			}
-			return;
-			//[,$("#m-up").children().length]
-			http.start({'s':101,'v':b}).onreadystatechange = function() {
+			http.start({'s':101,'v':b[1]}).onreadystatechange = function() {
 				if (!http.st(this)) return; else $(".__27q").find(".__27q1").fadeIn(0).end().find(".__27q0").fadeOut(0);
 				if (this.responseText=='') return; else if (!dom.id("m-up")) return; else c = [JSON.parse($("#m-up").attr("data-id")),http.txt(this),''];
-				/*
 				c[3] = c[1][2].length;
-				if (!(c[0].st==c[1][0].st&&c[0].i==c[1][0].i)) return; else if (c[3]!=0) {
-					for (c[4]=0;c[4]<c[3];c[4]++) c[2] += go.audio.aCon([c[1][2][c[4]],c[1][0]]);
-					$("#m-up").append(c[2]).attr("data-s",0);
+				if (!(c[0].st==c[1][0].st&&c[0].i==c[1][0].i&&c[0].t==c[1][0].t)) return; else if (c[3]!=0) {
+					if (c[0].t==0) {
+						for (c[4]=0;c[4]<c[3];c[4]++) c[2] += go.audio.aCon([c[1][2][c[4]],c[1][0]]);
+						$("#m-up").append(c[2]).attr("data-s",0);
+					} else {
+						c[5] = [$("#m-up").children().length,0,''];
+						for (c[5][1];c[5][1]<c[5][0];c[5][1]++) {
+							for (c[6]=0;c[6]<c[3];c[6]++) {
+								c[7] = $("#m-up").children().eq(c[5][1]).attr("data-id");
+								if (c[7]==c[1][2][c[6]][0]) {
+									if ($("#m-up").children().eq(c[5][1]).html()=='') $("#m-up").children().eq(c[5][1]).html('<div class="__27v">'+$("#m-up").children().eq(c[5][1]).attr("data-id")+'</div><div class="__27u"></div>');
+									$("#m-up").children().eq((c[5][1]!=0?(c[5][1]-1):0)).attr("data-s",1);
+									c[7] = [0,$("#m-up").children().eq(c[5][1]).find(".__27u").children().length,true];
+									for (c[7][3]=0;c[7][3]<c[7][1];c[7][3]++) if ($("#m-up").children().eq(c[5][1]).find(".__27u").children().eq(c[7][3]).attr("data-id")==c[1][2][c[6]][1][0]) c[7][2] = false;
+									if (c[7][2]) $("#m-up").children().eq(c[5][1]).find(".__27u").append(go.audio.aCon([c[1][2][c[6]][1],c[1][0]]));
+									if (c[6]==(c[3]-1)) $("#m-up").children().eq(c[5][1]).attr("data-s",0);
+								} else if (c[7]==c[1][1][0]) $("#m-up").children().eq(c[5][1]).attr("data-s",1);
+							}
+						}
+						$("#m-up").attr("data-s",0);
+					}
 					go.audio.join();
 				} else $(".__27q").fadeOut(200);
+				/*
+				[{"st":0,"i":"1","t":"1"},["E",23],[["E",["18","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["17","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["16","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["15","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["14","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["13","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["12","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["11","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["10","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["9","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["8","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["7","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["6","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["5","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["4","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["3","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["2","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["E",["1","1","Shape of you","Ed Sheeran","3:53","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/5c7a\/7ad5\/1\/5c7a7ad5a393f7d7ea96902317813920.mp3","tm":"2017-07-21 17:10:02"},"\/sources\/def.png",0]],["U",["59","1","By Seemx","unknown","03:32","0","",{"bt":1,"src":"http:\/\/au.infalike.com\/list\/6c98\/b495\/1\/6c98b495f2c936200323e2e46572fbd1.mp3","tm":"2017-08-05 16:13:15"},"\/sources\/def.png",0]],["U",["55","1","unknown","unknown","03:21","0","",{"bt":0,"src":"http:\/\/au.infalike.com\/list\/06ac\/b340\/1\/06acb3400965ddaffb0b37de4f1d76bf.mp3","tm":"2017-08-05 16:04:43"},"\/sources\/def.png",0]]]]
 				*/
 			}
 		},

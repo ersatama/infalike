@@ -944,7 +944,8 @@ exit(json_encode($b));
 }
 function auCon($a) {
 if (gettype($a)!="array") exit(); else $a[2] = [];
-$c = [music([$a[0]['i'],$a[1]])];
+//[{"st":0,"i":"1","t":"1"},["Y",2]]
+$c = [music([$a[0]['i'],$a[1]],$a[0]['t'])];
 $c[1] = sizeof($c[0]);
 for ($c[2]=0;$c[2]<$c[1];$c[2]++) $a[2][] = $c[0][$c[2]];
 exit(json_encode($a));
@@ -1336,33 +1337,44 @@ $c[0] .= plist([$c[2][2],1,alertBox::pLC([$c[2][2][0],$c[2][2][1]])]);
 return $c[1].'<div class="__19ba">'.$c[0].'</div>';
 }
 }
+function setAuS($a) {
+$GLOBALS['DB']->q("REPLACE `".$GLOBALS['info'][2][55][0]."` VALUES(".$_SESSION['id'].",'".$a."')");
+}
+function chA($a) {
+alertBox::setAuS($a);
+exit(alertBox::auM($_SESSION['id']));
+}
 function auMB($a,$z) {
 $b = [''];
 if ($a[0]==4) {
 $c = [audioC($_SESSION['id'])];
 $d = audioS($_SESSION['id']);
-$c[1] = ['<div class="__19ba"><div class="__21a __24m"><div class="__24n"></div><div class="__24o"></div></div><div class="__22o">You haven\'t added any music to your wish list.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">'.$c[0].' аудиозапис'.($c[0]!=1?'ей':'ь').'</div></div><div class="__27r" onclick="return go.audio.change(this,event)" data-id="'.$d.'"><div class="__27s '.($d==0?'__27r0':'').'"></div><div class="__27s __27t '.($d==1?'__27r0':'').'"></div></div></div>'];
+$c[1] = ['<div class="__19ba"><div class="__21a __24m"><div class="__24n"></div><div class="__24o"></div></div><div class="__22o">You haven\'t added any music to your медиатека.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$c[0].' аудиозапис'.($c[0]!=1?'ей':'ь').'</div></div><div class="__27r" data-id="'.$d.'"><div class="__27s '.($d==0?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="0"></div><div class="__27s __27t '.($d==1?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="1"></div></div></div>'];
 if ($c[0]!=0) {
-$c[2] = [music([$_SESSION['id'],0],$d)];
+$c[2] = [music([$_SESSION['id'],($d==0?0:[$GLOBALS['info'][41][0],0])],$d)];
 $c[2][1] = sizeof($c[2][0]);
 $c[1][0] = '';
 if ($d==0) for ($c[2][2]=0;$c[2][2]<$c[2][1];$c[2][2]++) $c[1][0] .= aucon([$c[2][0][$c[2][2]],0,[0,$_SESSION['id']]]); else {
-$c[1][3] = [''];
 $c[3] = $GLOBALS['info'][41];
 foreach ($c[3] as &$c[4]) {
 $c[5] = true;
+$c[1][3] = [''];
 for ($c[2][2]=0;$c[2][2]<$c[2][1];$c[2][2]++) {
-$c[1][4] = $c[2][0][$c[2][2]];
-if ($c[1][4][0]==$c[4]) {
-if ($c[1][3][1]!=''&&$c[1][3][1]!=$c[1][4][0]) {
-$c[1][0] .= '<div class="__27w" data-id="'.$c[1][3][1].'" data-s="1"><div class="__27v">'.$c[1][3][1].'</div><div class="__27u">'.$c[1][3][0].'</div></div>';
-$c[1][3][0] = '';
-}
-$c[1][3][0] .= aucon([$c[1][4][1],0,[0,$_SESSION['id']]]);
-$c[1][3][1] = $c[1][4][0];
-if ($c[2][2]==($c[2][1]-1)) $c[1][0] .= '<div class="__27w" data-id="'.$c[1][4][0].'" data-s="0"><div class="__27v">'.$c[1][3][1].'</div><div class="__27u">'.$c[1][3][0].'</div></div>';
-$c[5] = false;
-}
+	$c[1][4] = $c[2][0][$c[2][2]];
+	if ($c[1][4][0]==$c[4]) {
+		$c[6] = false;
+		$c[1][3][1] = $c[4];
+		$c[1][3][0] .= aucon([$c[1][4][1],0,[0,$_SESSION['id']]]);
+		if ($c[2][2]==($c[2][1]-1)) {
+			$c[1][0] .= '<div class="__27w" data-id="'.$c[1][3][1].'" data-s="0"><div class="__27v">'.$c[1][3][1].'</div><div class="__27u">'.$c[1][3][0].'</div></div>';
+			$c[5] = false;
+			break;
+		}
+	} else if ($c[1][3][0]!='') {
+		$c[1][0] .= '<div class="__27w" data-id="'.$c[1][3][1].'" data-s="1"><div class="__27v">'.$c[1][3][1].'</div><div class="__27u">'.$c[1][3][0].'</div></div>';
+		$c[5] = false;
+		break;
+	}
 }
 if ($c[5]) $c[1][0] .= '<div class="__27w" data-id="'.$c[4].'" data-s="1"></div>';
 }
@@ -1371,43 +1383,46 @@ $c[1][0] = '<div class="'.($d==0?'__19b':'__19ba').'" id="m-up" data-id="'.htmls
 }
 return $c[1][1].$c[1][0];
 } else if ($a[0]==3) {
-return '<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__27f">Пользователь заблокирован</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
+return '<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__27f">Пользователь заблокирован</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else if ($a[0]==2) {
-$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Пользователь ограничил вам доступ. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">Доступ ограничен</div></div></div>'];
+$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Пользователь ограничил вам доступ. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div>'];
 return $c[1].'<div class="__19ba">'.$c[0].'</div>';
 } else if ($a[0]==1) {
-$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">Доступ ограничен</div></div></div>'];
+$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div>'];
 return $c[1].'<div class="__19ba">'.$c[0].'</div>';
 } else {
-$c = ['<div class="__19ba"><div class="__27f">Доступ ограничен</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">Доступ ограничен</div></div></div>'];
+$c = ['<div class="__19ba"><div class="__27f">Доступ ограничен</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div>'];
 $d = [$z];
 if ($a[1]==0) {
 $d[1] = audioC($a[2]);
-$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">Wish List</div><div class="__24lb">'.$d[1].' аудиозапис'.($d[1]!=1?'ей':'ь').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.(sizeof($d[0]['i'])!=0?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
+$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$d[1].' аудиозапис'.($d[1]!=1?'ей':'ь').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.(sizeof($d[0]['i'])!=0?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
 if ($d[1]!=0) {
 $d[2] = audioS($_SESSION['id']);
-$c[2] = [music([$a[2],0],$d[2])];
+$c[2] = [music([$a[2],($d[2]==0?0:[$GLOBALS['info'][41][0],0])],$d[2])];
 $c[2][1] = sizeof($c[2][0]);
 $c[0] = '';
 if ($d[2]==0) for ($c[2][2]=0;$c[2][2]<$c[2][1];$c[2][2]++) $c[0] .= aucon([$c[2][0][$c[2][2]],0,[0,$a[2]]]); else {
-$c[2][3] = [''];
 $c[3] = $GLOBALS['info'][41];
 foreach ($c[3] as &$c[4]) {
-$c[5] = true;
-for ($c[2][2]=0;$c[2][2]<$c[2][1];$c[2][2]++) {
-$c[2][4] = $c[2][0][$c[2][2]];
-if ($c[2][4][0]==$c[4]) {
-if ($c[2][3][1]!=''&&$c[2][3][1]!=$c[2][4][0]) {
-$c[0] .= '<div class="__27w" data-id="'.$c[2][3][1].'" data-s="1"><div class="__27v">'.$c[2][3][1].'</div><div class="__27u">'.$c[2][3][0].'</div></div>';
-$c[2][3][0] = '';
-}
-$c[2][3][0] .= aucon([$c[2][4][1],0,[0,$a[2]]]);
-$c[2][3][1] = $c[2][4][0];
-if ($c[2][2]==($c[2][1]-1)) $c[0] .= '<div class="__27w" data-id="'.$c[2][4][0].'" data-s="'.($c[2][1]!=30?1:0).'"><div class="__27v">'.$c[2][3][1].'</div><div class="__27u">'.$c[2][3][0].'</div></div>';
-$c[5] = false;
-}
-}
-if ($c[5]) $c[0] .= '<div class="__27w" data-id="'.$c[4].'" data-s="1"></div>';
+	$c[5] = true;
+	$c[2][3] = [''];
+	for ($c[2][2]=0;$c[2][2]<$c[2][1];$c[2][2]++) {
+		$c[2][4] = $c[2][0][$c[2][2]];
+		if ($c[2][4][0]==$c[4]) {
+			$c[2][3][1] = $c[4];
+			$c[2][3][0] .= aucon([$c[2][4][1],0,[0,$a[2]]]);
+			if ($c[2][2]==($c[2][1]-1)) {
+				$c[0] .= '<div class="__27w" data-id="'.$c[2][3][1].'" data-s="0"><div class="__27v">'.$c[2][3][1].'</div><div class="__27u">'.$c[2][3][0].'</div></div>';
+				$c[5] = false;
+				break;
+			}
+		} else if ($c[2][3][0]!='') {
+			$c[0] .= '<div class="__27w" data-id="'.$c[2][3][1].'" data-s="1"><div class="__27v">'.$c[2][3][1].'</div><div class="__27u">'.$c[2][3][0].'</div></div>';
+			$c[5] = false;
+			break;
+		}
+	}
+	if ($c[5]) $c[0] .= '<div class="__27w" data-id="'.$c[4].'" data-s="1"></div>';
 }
 }
 $c[0] = '<div class="__19ba" id="m-up" data-id="'.htmlspecialchars(json_encode(array('st'=>0,'i'=>$a[2],'t'=>$d[2]))).'">'.$c[0].'</div><button onclick="return go.audio.update();" class="__27q" '.($c[2][1]!=30?'style="display: none;"':'').'><span class="__27q1">Загрузить ещё</span><div class="__27q0"></div></button>';
@@ -3454,10 +3469,15 @@ array_push($b[1],$b[4]);
 }
 return $b[1];
 } else {
-$c = $GLOBALS['info'][41];
-$b = [[],$a[1]];
+$c = [];
+$e = [false,0];
+foreach ($GLOBALS['info'][41] as &$d) {
+	if ($a[1][0]==$d) $e[0] = true;
+	if ($e[0]) $c[] = $d;
+}
+$b = [[],0];
 foreach($c as &$v) {
-$b[2] = $GLOBALS['DB']->q("SELECT `a`.`".$GLOBALS['info'][2][42][1]."`,`a`.`".$GLOBALS['info'][2][42][2]."`,`a`.`".$GLOBALS['info'][2][42][4]."`,`a`.`".$GLOBALS['info'][2][42][5]."`,`a`.`".$GLOBALS['info'][2][42][6]."`,`a`.`".$GLOBALS['info'][2][42][7]."`,`a`.`".$GLOBALS['info'][2][42][8]."`,`a`.`".$GLOBALS['info'][2][42][9]."` FROM `".$GLOBALS['info'][2][42][0]."` `a`,`".$GLOBALS['info'][2][43][0]."` `b` WHERE `a`.`".$GLOBALS['info'][2][42][1]."`=`b`.`".$GLOBALS['info'][2][43][3]."` AND `a`.`".$GLOBALS['info'][2][42][3]."`='0' AND `b`.`".$GLOBALS['info'][2][43][5]."`='0' AND `b`.`".$GLOBALS['info'][2][43][2]."`='".$a[0]."' AND `a`.`".$GLOBALS['info'][2][42][5]."` COLLATE UTF8_GENERAL_CI LIKE '".$v."%' ORDER BY `b`.`".$GLOBALS['info'][2][43][4]."` DESC LIMIT ".$a[1].",".(30-$a[1]));
+$b[2] = $GLOBALS['DB']->q("SELECT `a`.`".$GLOBALS['info'][2][42][1]."`,`a`.`".$GLOBALS['info'][2][42][2]."`,`a`.`".$GLOBALS['info'][2][42][4]."`,`a`.`".$GLOBALS['info'][2][42][5]."`,`a`.`".$GLOBALS['info'][2][42][6]."`,`a`.`".$GLOBALS['info'][2][42][7]."`,`a`.`".$GLOBALS['info'][2][42][8]."`,`a`.`".$GLOBALS['info'][2][42][9]."` FROM `".$GLOBALS['info'][2][42][0]."` `a`,`".$GLOBALS['info'][2][43][0]."` `b` WHERE `a`.`".$GLOBALS['info'][2][42][1]."`=`b`.`".$GLOBALS['info'][2][43][3]."` AND `a`.`".$GLOBALS['info'][2][42][3]."`='0' AND `b`.`".$GLOBALS['info'][2][43][5]."`='0' AND `b`.`".$GLOBALS['info'][2][43][2]."`='".$a[0]."' AND `a`.`".$GLOBALS['info'][2][42][5]."` ".($v!='?'?"COLLATE UTF8_GENERAL_CI LIKE '".$v."%'":"NOT REGEXP '^[a-zA-Z]'")." ORDER BY `b`.`".$GLOBALS['info'][2][43][4]."` DESC LIMIT ".($v==$a[1][0]?($b[1]+$a[1][1]):0).",".(30-$e[1]));
 $b[3] = $GLOBALS['DB']->n($b[2]);
 for ($b[4]=0;$b[4]<$b[3];$b[4]++) {
 $b[5] = $GLOBALS['DB']->f($b[2]);
@@ -3466,8 +3486,8 @@ $b[5][8] = musicIcon($b[5][0]);
 $b[5][9] = edit($b[5][1]);
 $b[0][] = [$v,$b[5]];
 }
-$b[1] = $b[1]+$b[3];
-if ($b[1]==30) break;
+$e[1] += $b[3];
+if ($e[1]==30) break;
 }
 return $b[0];
 }

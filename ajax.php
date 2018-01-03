@@ -325,6 +325,8 @@ alertBox::createPlist($a['v']);
 alertBox::url($a['v']);
 } else if ($a['s']==127) {
 alertBox::savePLIST($a['v']);
+} else if ($a['s']==128) {
+alertBox::chA($a['v']);
 }
 
 }
