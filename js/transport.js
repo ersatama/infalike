@@ -1015,7 +1015,7 @@ $info[2][50] = ['_audio_playlist_list','id','plst','au','ss','ct'];//audio playl
 		aCon: function(a) {
 			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
 			return '<div class="__19c'+(a[0][9]==0?' ui-sortable-handle':'')+'" id="audio'+a[0][0]+'" onmouseenter="return go.audio.view(this)" onclick="return go.audio.sel('+dom.es(JSON.stringify([[a[0][0],a[0][2],a[0][3],a[0][4],a[0][5],a[0][7].bt,a[0][8],a[0][9]],[a[1].st,a[1].i]]))+')" data-id="'+a[0][0]+'"><div class="__20p" style="display: none;"><div class="__20s" onmouseover="return go.audio.opView(this,'+dom.es(JSON.stringify([a[0][0]]))+',event)"></div></div><div class="__20q">'+a[0][4]+'</div><div class="__19d" style="background-image: url('+a[0][8]+');">'+(a[0][7].bt!=1?'<div class="__20j"></div>':'')+'<div class="__20u"><div class="__20v"></div></div></div><div class="__19e"><div '+(a[0][6]==''?'class="__19f"':'class="__19f __19f0" onclick="return go.audio.txt(this,'+dom.es(JSON.stringify([a[0][0]]))+',go.stop(event));"')+'>'+a[0][2]+'</div><div class="__19g" onclick="return go.audio.authorS(this,'+dom.es(JSON.stringify([a[0][0],a[0][3]]))+')">'+a[0][3]+'</div></div><div class="__19f1"><div class="__19f2"></div></div></div>';
-			/*
+			/*f
 			<div class="__20n" onmouseover="return go.audio.help1(this,\'Удалить аудиозапись\',event)" onclick="return go.audio.del([&quot;123&quot;])"></div><div class="__20o" onmouseover="return go.audio.help1(this,\'Редактировать\',event)" onclick="return go.audio.edit([&quot;123&quot;],go.stop(event))"></div>
 			[["95","1","unknown","unknown","02:06","0","",{"bt":1,"src":"http://au.infalike.com/list/46ee/44da/1/46ee44dac79d356174c469d8150d3975.mp3","tm":"2017-09-10 13:51:14"},"/sources/def.png",0],{"st":0,"i":"1"}]
 			*/
