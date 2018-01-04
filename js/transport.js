@@ -110,7 +110,7 @@ var go = {
 		b = [dom.g(a,'href'),(window.location.pathname+window.location.search)];
 		if (b[0]==null) return; else if (b[0]=='') return; else if (b[0]==b[1]) return; else if (go.linkU==b[0]) return; else go.linkU = b[0];
 		http.start({'s':126,'v':go.linkU}).onreadystatechange = function() {
-			if (!http.st(this)) return; else alert(this.responseText);c = http.txt(this);
+			if (!http.st(this)) return; else c = http.txt(this);
 			if (go.linkU!=c.m) return; else if (c.u==0) go.auChange(c);
 			go.linkU = '';
 		}
@@ -980,15 +980,37 @@ $info[2][50] = ['_audio_playlist_list','id','plst','au','ss','ct'];//audio playl
 			$("#__26f4").attr({"onclick":'return go.audio.add('+JSON.stringify(a)+',go.stop(event))'}).find(".__26f4a").animate({marginTop: "-27px"},200);
 			http.start({'s':105,'v':[0,a[0]]});
 		},
+		t: function() {
+			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
+			a = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','?'];
+			c = '';
+			for (b in a) c += '<div class="__27w" data-id="'+a[b]+'" data-s="1"></div>';
+			$("#m-up").html(c);
+		},
+		joinCon: function(a) {
+			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
+			b = [dom.id("m-up")];
+			b[1] = b[0].childNodes;
+			b[2] = b[1].length;
+			b[4] = a[0][3][0];
+			for (b[3]=0;b[3]<b[2];b[3]++) {
+				if (b[1][b[3]].dataset.id!=b[4]) continue; else if ($(b[1][b[3]]).html()=='') $(b[1][b[3]]).html('<div class="__27w" data-id="'+b[1][b[3]].dataset.id+'" data-s="1"><div class="__27v">'+b[1][b[3]].dataset.id+'</div><div class="__27u"></div></div>');
+				$(b[1][b[3]]).find(".__27u").prepend(go.audio.aCon(a));
+				break;
+			}
+		},
 		upR: function(a) {
 			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
 			load.marginOff();
-			if (!dom.id("au-list")) return; else b = [JSON.parse($("#au-list").attr("data-id")),http.txt(a)];
-			if (b[0][0]!=0) return; else if (b[0][1]!=1) return; else b[2] = go.audio.con(b[1],0);
-			if (dom.id("au-list").firstChild.firstChild.dataset.id==undefined) {
-				$("#au-list").first().html('');
-				dom.c(dom.id("au-list").firstChild,b[2]);
-			} else $(".__19b").prepend(b[2]);
+			if (!dom.id("m-up")) return; else b = [JSON.parse($("#m-up").attr("data-id")),http.txt(a)];
+			if (b[0].t==0) {
+				b[2] = go.audio.aCon(b[1]);
+				if (dom.id("m-up").firstChild.dataset.id==undefined) $("#m-up").removeClass("__19ba").addClass("__19b").html(b[2]); else $("#m-up").prepend(b[2]);
+				sortable();
+			} else if (b[0].t==1) {
+				if (dom.id("m-up").firstChild.dataset.id==undefined) go.audio.t();
+				go.audio.joinCon(b[1]);
+			}
 		},
 		aCon: function(a) {
 			var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
@@ -4559,7 +4581,7 @@ var load = {
 			go.scrollVW();
 	},
 	start: function() {
-		if (navigator.onLine) load.construct(); else load.destruct();
+		if (!navigator.onLine) load.construct(); else load.destruct();
 		load.marginOn();
 	},
 	marginOn: function() {

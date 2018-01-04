@@ -1312,19 +1312,17 @@ $c[1][0] = '<div class="__19b0">'.$c[1][0].'</div>';
 }
 return $c[1][1].'<div class="__19ba">'.$c[1][0].'</div>';
 } else if ($a[0]==1) {
-$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">Доступ ограничен</div></div></div>'];
-return $c[1].'<div class="__19ba">'.$c[0].'</div>';
+return '<div class="__24b"><div class="__24l"><div class="__24la">Медиатека</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__21c"><div class="__21c0"></div></div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else if ($a[0]==2) {
-$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Пользователь ограничил вам доступ. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">Доступ ограничен</div></div></div>'];
-return $c[1].'<div class="__19ba">'.$c[0].'</div>';
+return '<div class="__24b"><div class="__24l"><div class="__24la">Медиатека</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__21c1"><div class="__21c2"></div></div><div class="__22o">Пользователь удален или не существует. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else if ($a[0]==3) {
-return '<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__27f">Пользователь заблокирован</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
+return '<div class="__24b"><div class="__24l"><div class="__24la">Медиатека</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__27f">Пользователь заблокирован</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else {
 $c = ['<div class="__27f">Доступ ограничен</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">Доступ ограничен</div></div></div>'];
 $d = [$z];
 if ($a[1]==0) {
 $d[1] = plistC($a[2]);
-$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">'.$d[1].' плейлист'.($d[1]!=1?'а':'').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.($d[0]['i']!=''?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
+$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">'.$d[1].' плейлист'.($d[1]!=1?'а':'').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="/'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.(sizeof($d[0]['i'])!=0?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
 if ($d[1]!=0) {
 $c[2] = [alertBox::plistS([$a[2],0,30])];
 $c[0] = '';
@@ -1343,14 +1341,13 @@ $GLOBALS['DB']->q("REPLACE `".$GLOBALS['info'][2][55][0]."` VALUES(".$_SESSION['
 function chA($a) {
 alertBox::setAuS($a);
 exit(alertBox::auM($_SESSION['id']));
-//
 }
 function auMB($a,$z) {
 $b = [''];
 if ($a[0]==4) {
 $c = [audioC($_SESSION['id'])];
 $d = audioS($_SESSION['id']);
-$c[1] = ['<div class="__19ba"><div class="__21a __24m"><div class="__24n"></div><div class="__24o"></div></div><div class="__22o">You haven\'t added any music to your медиатека.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$c[0].' аудиозапис'.($c[0]!=1?'ей':'ь').'</div></div><div class="__27r" data-id="'.$d.'"><div class="__27s '.($d==0?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="0"></div><div class="__27s __27t '.($d==1?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="1"></div></div></div>'];
+$c[1] = ['<div class="__19ba" id="m-up" data-id="'.htmlspecialchars(json_encode(array('st'=>0,'i'=>$_SESSION['id'],'t'=>$d))).'"><div class="__21a __24m"><div class="__24n"></div><div class="__24o"></div></div><div class="__22o">You haven\'t added any music to your медиатека.</div></div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$c[0].' аудиозапис'.($c[0]!=1?'ей':'ь').'</div></div><div class="__27r" data-id="'.$d.'"><div class="__27s '.($d==0?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="0"></div><div class="__27s __27t '.($d==1?'__27r0':'').'" onclick="return go.audio.change(this,event)" data-id="1"></div></div></div>'];
 if ($c[0]!=0) {
 $c[2] = [music([$_SESSION['id'],($d==0?0:[$GLOBALS['info'][41][0],0])],$d)];
 $c[2][1] = sizeof($c[2][0]);
@@ -1386,8 +1383,7 @@ return $c[1][1].$c[1][0];
 } else if ($a[0]==3) {
 return '<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__27f">Пользователь заблокирован</div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else if ($a[0]==2) {
-$c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Пользователь ограничил вам доступ. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div>'];
-return $c[1].'<div class="__19ba">'.$c[0].'</div>';
+return '<div class="__24b"><div class="__24l"><div class="__24la">Music playlist</div><div class="__24lb">Доступ ограничен</div></div></div><div class="__19ba"><div class="__21c1"><div class="__21c2"></div></div><div class="__22o">Пользователь удален или не существует. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div></div>';
 } else if ($a[0]==1) {
 $c = ['<div class="__21c"><div class="__21c0"></div></div><div class="__22o">Доступ ограничен. вернуться к <a href="/audios'.$_SESSION['id'].'" onclick="return return go.link(this,event)" class="no-link"><span class="__22o0">моим аудиозаписьям</span></a>.</div>','<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">Доступ ограничен</div></div></div>'];
 return $c[1].'<div class="__19ba">'.$c[0].'</div>';
@@ -1396,7 +1392,7 @@ $c = ['<div class="__19ba"><div class="__27f">Доступ ограничен</d
 $d = [$z];
 if ($a[1]==0) {
 $d[1] = audioC($a[2]);
-$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$d[1].' аудиозапис'.($d[1]!=1?'ей':'ь').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.(sizeof($d[0]['i'])!=0?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
+$c[1] = '<div class="__24b"><div class="__24l"><div class="__24la">медиатека</div><div class="__24lb">'.$d[1].' аудиозапис'.($d[1]!=1?'ей':'ь').'</div></div><div class="__27g"><a href="'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'"><div class="__27h">'.$d[0]['dt']['nm'].'</div></a><div class="__27i"><a href="/'.$d[0]['dt']['al'].'" class="no-link" onclick="return go.linkP(this,event)" data-id="'.$d[0]['dt']['id'].'">'.(sizeof($d[0]['i'])!=0?'<img src="'.$d[0]['i'][5][2].'" width="30" height="30" class="photo">':'<div class="__27i0"><div class="__27i1"></div></div>').'</a></div></div></div>';
 if ($d[1]!=0) {
 $d[2] = audioS($_SESSION['id']);
 $c[2] = [music([$a[2],($d[2]==0?0:[$GLOBALS['info'][41][0],0])],$d[2])];
@@ -1432,14 +1428,18 @@ $c[0] = '<div class="__19ba" id="m-up" data-id="'.htmlspecialchars(json_encode(a
 return $c[1].$c[0];
 }
 }
+function auMenu($a) {
+return '<div class="__19k"><div class="__19h">'.($a[0]==0?'<a href="/audios'.$a[1].'" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==0&&$a[4]!=2)?'__19j':'').'">'.$a[2].'</button></a><a class="no-link" href="/audios'.$a[1].'?section=playlists" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==1&&$a[4]!=2)?'__19j':'').'">Плейлисты</button></a><a href="/audios'.$a[1].'?section=recom" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==2&&$a[4]!=2)?'__19j':'').'">Рекомендации</button></a><a href="/audios'.$a[1].'?section=albums" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==3&&$a[4]!=2)?'__19j':'').'" style="margin: 0;">Альбомы</button></a>':'<a href="/audios'.$a[1].'" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==0&&$a[4]!=2)?'__19j':'').'">'.$a[2].'</button></a><a class="no-link" href="/audios'.$a[1].'?section=playlists" onclick="return go.linkM(this,event)"><button class="__19i '.(($a[3]==1&&$a[4]!=2)?'__19j':'').'">Плейлисты</button></a><a href="/audios'.$a[1].'?section=albums" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==2?'__19j':'').'" style="margin: 0;">Альбомы</button></a>').'</div></div>';
+}
 function auP($a) {
 $b = [alertBox::bList($a),alertBox::user($a)];
-return alertBox::auGB([alertBox::auMenu((($b[0]==4||$b[0]==2)?[0,$_SESSION['id'],'Моя музыка',1]:[1,$a,'Музыка '.$b[1]['dt']['n'],1])),alertBox::auPB([$b[0],alertBox::auConf([$b[0],$a]),$a],$b[1])]);
+$b[2] = ($b[0]==4||$b[0]==2)?true:false;
+return alertBox::auGB([alertBox::auMenu(($b[2]?[0,$_SESSION['id'],'Моя музыка',1,$b[0]]:[1,$a,'Музыка '.$b[1]['dt']['n'],1])),alertBox::auPB([$b[0],alertBox::auConf([$b[0],$a]),$a],$b[1])]);
 }
 function auM($a) {
 $b = [alertBox::bList($a),alertBox::user($a)];
-return alertBox::auGB([alertBox::auMenu((($b[0]==4||$b[0]==2)?[0,$_SESSION['id'],'Моя музыка',0]:[1,$a,'Музыка '.$b[1]['dt']['n'],0])),alertBox::auMB([$b[0],alertBox::auConf([$b[0],$a]),$a],$b[1])]);
-//<div data-id="'.htmlspecialchars(json_encode([1,$a])).'" data-info="'.htmlspecialchars(json_encode([1,$a])).'" id="au-list"></div>
+$b[2] = ($b[0]==4||$b[0]==2)?true:false;
+return alertBox::auGB([alertBox::auMenu(($b[2]?[0,$_SESSION['id'],'Моя музыка',0,$b[0]]:[1,$a,'Музыка '.$b[1]['dt']['n'],0])),alertBox::auMB([$b[0],alertBox::auConf([$b[0],$a]),$a],$b[1])]);
 }
 function auGB($a) {
 return '<div class="__13r">'.$a[0].'<div class="__18w"><div class="__20m"></div><input type="text" class="__18x" placeholder="Поиск по аудиозаписьям, альбомам, исполнителям" onkeyup="return go.audio.searchStart()" value=""><div class="__18z" onclick="return go.audio.upload()"><div class="__20k"></div></div><div class="__23h"><div class="__23i" onclick="return go.audio.searchClear()"></div><div class="__23j" onclick="return go.audio.sOpV(this,event)" onmousedown="return go.stop(event);"></div></div></div>'.$a[1].'<div id="__19b0"></div></div><div id="__19b1"></div>';
@@ -1501,9 +1501,6 @@ if ($b[1][3]!=0) $b[0] = 0;//если пользователь А состоит
 }
 }
 return $b[0];//возвращаем открыт ли доступ к пользователю 0 - да, 1 - нет
-}
-function auMenu($a) {
-return '<div class="__19k"><div class="__19h">'.($a[0]==0?'<a href="/audios'.$a[1].'" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==0?'__19j':'').'">'.$a[2].'</button></a><a class="no-link" href="/audios'.$a[1].'?section=playlists" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==1?'__19j':'').'">Плейлисты</button></a><a href="/audios'.$a[1].'?section=recom" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==2?'__19j':'').'">Рекомендации</button></a><a href="/audios'.$a[1].'?section=albums" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==3?'__19j':'').'" style="margin: 0;">Альбомы</button></a>':'<a href="/audios'.$a[1].'" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==0?'__19j':'').'">'.$a[2].'</button></a><a class="no-link" href="/audios'.$a[1].'?section=playlists" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==1?'__19j':'').'">Плейлисты</button></a><a href="/audios'.$a[1].'?section=albums" class="no-link" onclick="return go.linkM(this,event)"><button class="__19i '.($a[3]==2?'__19j':'').'" style="margin: 0;">Альбомы</button></a>').'</div></div>';
 }
 function data($a) {
 $b = [[]];
@@ -2847,21 +2844,20 @@ function bodyView($a) {
 			}
 			exit();
 		} else if ($a['f']==11) {
-		$c[2] = ['','',''];
-		preg_match('/audios(\d)/',$a['d'],$c[2][1]);
+		$c[2] = '';
+		preg_match('/audios(\d+)/',$a['d'],$c[2]);
+		/*
 		$d = [($c[2][1][1]==$_SESSION['id']?0:$GLOBALS['DB']->c("SELECT COUNT(`".$GLOBALS['info'][2][51][1]."`) FROM `".$GLOBALS['info'][2][51][0]."` WHERE `".$GLOBALS['info'][2][51][2]."`='".$c[2][1][1]."' AND `".$GLOBALS['info'][2][51][3]."`='".$_SESSION['id']."' AND `".$GLOBALS['info'][2][51][5]."`='0' LIMIT 1"))];
 		if ($d[0]==0) {
-			if (findURLV([$a['q'],'section','playlists'])) {
-				return [alertBox::fAuP(alertBox::auP($c[2][1][1])),'Плейлисты'];
-			} else if (findURLV([$a['q'],'section','recom'])) {
-				$c[2] = [auBody([[3,$c[2][1][1]],$c[2][0],'<div class="__21a"></div><div class="__22o">Рекомендации</div>']),'Рекомендации',auHead([2,$c[2][1][1]])];
+		*/
+			if (findURLV([$a['q'],'section','playlists'])) return [alertBox::fAuP(alertBox::auP($c[2][1])),'Плейлисты']; else if (findURLV([$a['q'],'section','recom'])) {
+				$c[1] = [auBody([[3,$c[2][0][1]],$c[2][0],'<div class="__21a"></div><div class="__22o">Рекомендации</div>']),'Рекомендации',auHead([2,$c[2][0][1]])];
 			} else if (findURLV([$a['q'],'section','albums'])) {
-				$c[2] = [auBody([[3,$c[2][1][1]],$c[2][0],'<div class="__21b"></div><div class="__22o">У вас нет альбома</div>']),'Мой альбомы',auHead([3,$c[2][1][1]])];
-			} else {
-				return [alertBox::fAuP(alertBox::auM($c[2][1][1])),'Моя музыка'];
-			}
+				$c[2] = [auBody([[3,$c[2][0][1]],$c[2][0],'<div class="__21b"></div><div class="__22o">У вас нет альбома</div>']),'Мой альбомы',auHead([3,$c[2][1][1]])];
+			} else return [alertBox::fAuP(alertBox::auM($c[2][1])),'Моя музыка'];
+		/*
 		} else $c[2] = ['<div data-id="'.htmlspecialchars(json_encode([0,$c[2][1][1]])).'" data-info="'.htmlspecialchars(json_encode([0,$c[2][1][1]])).'" id="au-list"><div class="__19b">'.($c[2][0]!=''?$c[2][0]:'Пользователь ограничил вам доступ').'</div><div id="__19b0"></div></div>','Доступ ограничен',auHead([0,$c[2][1][1]])];
-		$b = ['<div class="__3g"><div class="__3h" id="__3h">'.menuLeft(2).'</div><div class="__3i"><div class="__18v" id="au-con-m"><div id="au-con"><div class="__19a" style="background-image: url(/sources/def.png);"></div><div class="__19l __19m" onclick="return go.audio.play(go.stop(event));"></div><div class="__19n" onclick="return go.audio.prev(go.stop(event));"></div><div class="__19o" onclick="return go.audio.next(go.stop(event));"></div><div class="__19p"></div><div class="__19q"onmouseenter="return go.audio.tmS(this,event)" onmousedown="return go.audio.rew(this,event,0)"><div class="__23c0"></div><div class="__19r" onselectstart="return false;"><div class="__23b"></div><div class="__19r0"><div class="__19r1"></div></div></div></div><div class="__20a"></div><div class="__19t2"><div class="__19t3"><div class="__19t1"></div><div class="__19t"></div><div class="__19t0"></div></div><div id="__19t"></div></div><div class="__19s0" onclick="return go.audio.mode();"><div class="__19s1" data-id="0" id="_au_mode"></div><div class="__19s" onmouseenter="return go.audio.help(this,1,\'Normal mode\',event)"></div></div><div class="__19u0"><div class="__19u" onmouseenter="return go.audio.help(this,2,\'Показать похожие\',event)"></div></div><div class="__19v0"><div class="__19v1"></div><div class="__19v" onmouseover="return go.audio.status(this,event)"></div></div><div class="__19w" id="__19w"><div class="__19x"></div></div><div class="__19y" onmouseenter="return go.audio.volS(this,event,0)" onmousedown="return go.audio.vol(this,event,0)"><div class="__23c"><div class="__23d">12</div></div><div class="__19z"><div class="__19z0"><div class="__19z1"></div></div></div></div></div></div><div class="__13k"><div class="__13r"><div class="__19k"><div class="__19h">'.$c[2][2].'</div></div><div class="__18w"><div class="__20m"></div><input type="text" class="__18x" placeholder="Поиск по аудиозаписьям, альбомам, исполнителям" onkeyup="return go.audio.searchStart()" value="'.getURL([$a['q'],'search']).'"><div class="__18z" onclick="return go.audio.upload()"><div class="__20k"></div></div><div class="__23h"><div class="__23i" onclick="return go.audio.searchClear()"></div><div class="__23j" onclick="return go.audio.sOpV(this,event)" onmousedown="return go.stop(event);"></div></div></div>'.$c[2][0].'</div><div id="__19b1"></div></div><div class="__13f" id="audio-right"><div class="__25w"><div class="__26f"><div class="__26f0" onclick="return go.audio.prev(go.stop(event));"></div><div class="__26f1" onclick="return go.audio.next(go.stop(event));"></div><div class="__26f4" onclick="return go.audio.mode();"><div class="__26f4b" style="margin-top: -12px;"><div class="__26f4c"></div></div><div class="__26f4d"></div><div class="__26f4e"><div class="__26f4f"></div></div></div><div class="__26f4" id="__26f4"><div class="__26f4a" style="margin-top: -10px;"></div><div class="__26f4a1"></div><div class="__26f4a0"></div></div><div class="__26f3"></div><div class="__26f2" onmouseenter="return go.audio.opConV(this,event);"><div class="__26g"><div class="__7a" style="margin: -16px 0 0 76px;"><div class="__7b" style="box-shadow:0 0 1px 1px #e6ecf0;"></div></div><div class="__4y __6z" id="_au-l">Мне нравиться</div><div class="__4y __6z">Поделиться</div><div class="__4y __6z">Транслировать</div></div><div class="__26f20"></div></div></div><div class="__26d" onmouseenter="return go.audio.volS(this,event)" onmousedown="return go.audio.vol(this,event)"><div class="__23c"><div class="__23d"></div></div><div class="__26d0"><div class="__19z0"><div class="__19z1"></div></div></div></div><div class="__25x" id="__18o" onclick="return go.audio.play(go.stop(event));" onmouseenter="return go.audio.miniView(this,event)"><div class="__25x0"></div><div class="__20u"><div class="__20v"></div></div></div><div class="__25y"><div class="__25z"></div><div class="__26a"></div></div><div class="__26e">0:40</div><div class="__26b0" onmouseenter="return go.audio.tmS(this,event)" onmousedown="return go.audio.rew(this,event)"><div class="__23c0">0:00</div><div class="__26b"><div class="__26c0"></div><div class="__26c"><div class="__19r1"></div></div></div></div></div><div class="__3n"><div class="__13h" style="margin-bottom: 0;"><div class="__25t"><div class="__25u"></div><input type="text" class="__25v" placeholder="Search"></div><div class="__20d"><div class="__20e"><div class="__25h"><div class="__25h1"><div class="__25s"><div class="__25s0"></div><div class="__25s1">1,5K</div></div><button class="__22l">Follow</button></div><div class="__25h0"><div class="__20f"><div class="__20t"></div><img src="/sources/es.jpg" width="38" height="38" class="photo"></div><div class="__20g"><div class="__20h"><span class="__22k">Ed Sheeran</span><div class="__22i"></div><span class="__22j">sheeranoffical</span></div><div class="__22h">22 Аудиозаписей</div><div class="__20i"></div></div></div></div></div><div class="__20e"><div class="__25h"><div class="__25h1"><div class="__25s"><div class="__25s0"></div><div class="__25s1">1,5K</div></div><button class="__22l">Follow</button></div><div class="__25h0"><div class="__20f"><div class="__20t"></div><img src="/sources/tl.jpg" width="38" height="38" class="photo"></div><div class="__20g"><div class="__20h"><span class="__22k">Justin Timberlake</span><div class="__22i"></div><span class="__22j">timberlake</span></div><div class="__22h">22 Аудиозаписей</div><div class="__20i"></div></div></div></div></div><div class="__20e"><div class="__25h"><div class="__25h1"><div class="__25s"><div class="__25s0"></div><div class="__25s1">1,5K</div></div><button class="__22l">Follow</button></div><div class="__25h0"><div class="__20f"><div class="__20t"></div><img src="/sources/rg.jpg" width="38" height="38" class="photo"></div><div class="__20g"><div class="__20h"><span class="__22k">Rupert Grint</span><div class="__22i"></div><span class="__22j">grint</span></div><div class="__22h">22 Аудиозаписей</div><div class="__20i"></div></div></div></div></div><div class="__20e"><div class="__25h"><div class="__25h1"><div class="__25s"><div class="__25s0"></div><div class="__25s1">1,5K</div></div><button class="__22l">Follow</button></div><div class="__25h0"><div class="__20f"><div class="__20t"></div><img src="/sources/b.jpg" width="38" height="38" class="photo"></div><div class="__20g"><div class="__20h"><span class="__22k">Jack Halib</span><div class="__22i"></div><span class="__22j">halib</span></div><div class="__22h">22 Аудиозаписей</div><div class="__20i"></div></div></div></div></div></div></div></div>'.menuFooter(0).'</div></div></div>',$c[2][1]];
+		*/
 		//<button class="__22h">Обновление друзей</button>
 		} else if ($a['f']==12) {
 			$c[2] = ['','',''];
